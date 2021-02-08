@@ -1,14 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
 import { AppComponent } from './app.component';
-
+import { GenresComponent } from './genres/genres.component';
+import { SingleGenreComponent } from './single-genre/single-genre.component';
+const appRoutes: Routes = [
+  {path: '', component: GenresComponent},
+  {path: 'genre/:genre_name', component: SingleGenreComponent}
+];
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GenresComponent,
+    SingleGenreComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [],
   bootstrap: [AppComponent]
