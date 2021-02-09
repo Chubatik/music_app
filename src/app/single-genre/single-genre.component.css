@@ -1,0 +1,13 @@
+nav {
+  box-shadow: 0 0 10px black;
+}
+.navbar-brand{
+  color: white;
+  margin: 10px;
+}
+.navbar-brand:hover {
+  color: azure;
+}
+img {
+  border-radius: 30px;
+}

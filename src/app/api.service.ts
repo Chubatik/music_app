@@ -15,4 +15,3 @@ export class ApiService {
     return this.httpClient.get(`${this.domen}?method=tag.gettopalbums&tag=${genre}&${this.apiKey}&${this.format}`);
   }
 }
-// http://ws.audioscrobbler.com/2.0/?method=tag.gettopalbums&tag=GENRE&api_key=ATOKEN&format=json

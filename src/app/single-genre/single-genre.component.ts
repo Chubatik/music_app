@@ -12,7 +12,8 @@ export class SingleGenreComponent implements OnInit {
   constructor(private location: Location, private apiService: ApiService) { }
   path = '';
   genre = '';
-  topAlbums = [];
+  topAlbums: any[] = [];
+  inputValue = '';
   ngOnInit(): void {
     this.path = this.location.path();
     this.genre = this.parsePath(this.path);

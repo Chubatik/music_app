@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { GenresComponent } from './genres/genres.component';
 import { SingleGenreComponent } from './single-genre/single-genre.component';
 import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 const appRoutes: Routes = [
   {path: '', component: GenresComponent},
@@ -21,6 +23,8 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
+    FormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
