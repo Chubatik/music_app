@@ -8,8 +8,11 @@ import {Observable} from 'rxjs';
 export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
-  url = `http://ws.audioscrobbler.com/2.0/`;
-  public getGenres(): Observable<any>{
-    return this.httpClient.get(this.url);
+  domen = `http://ws.audioscrobbler.com/2.0/`;
+  apiKey = 'api_key=b0414dc9024f62cd2a4524179e9b1b15';
+  format = 'format=json';
+  public getGenreTopAlbums(genre: string): Observable<any>{
+    return this.httpClient.get(`${this.domen}?method=tag.gettopalbums&tag=${genre}&${this.apiKey}&${this.format}`);
   }
 }
+// http://ws.audioscrobbler.com/2.0/?method=tag.gettopalbums&tag=GENRE&api_key=ATOKEN&format=json

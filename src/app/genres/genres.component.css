@@ -1,0 +1,14 @@
+.col-md-4 {
+  text-align: center;
+}
+.img-fluid{
+  border-radius: 10px;
+}
+img {
+  width: 200px;
+  height: 200px;
+}
+.img-fluid:hover{
+  border-radius: 30px;
+  box-shadow: 0 0 10px black;
+}

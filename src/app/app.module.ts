@@ -5,6 +5,8 @@ import {RouterModule, Routes} from '@angular/router';
 import { AppComponent } from './app.component';
 import { GenresComponent } from './genres/genres.component';
 import { SingleGenreComponent } from './single-genre/single-genre.component';
+import {HttpClientModule} from '@angular/common/http';
+
 const appRoutes: Routes = [
   {path: '', component: GenresComponent},
   {path: 'genre/:genre_name', component: SingleGenreComponent}
@@ -13,10 +15,11 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     GenresComponent,
-    SingleGenreComponent
+    SingleGenreComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes),
   ],
   providers: [],
