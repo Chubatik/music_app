@@ -5,16 +5,16 @@
   </div>
   <div>
   <div class="navbar-like" (click)="openLikedAlbums()"></div>
-  <div class="navbar-like-counter">{{storedAlbums.length}}</div>
+  <div class="navbar-like-counter" *ngIf="storedAlbums.length>0">{{storedAlbums.length}}</div>
   </div>
 </nav>
 <div class="container heading" *ngIf="searchedAlbums.length===0">
   <h2>There are no albums</h2>
 </div>
 <div class="container">
-  <div class="row g-2">
-    <div class="col-md-2" *ngFor="let album of searchedAlbums">
-      <div class="p-3">
+  <div class="row g-1">
+    <div class="col-md-3" *ngFor="let album of searchedAlbums">
+      <div class="p-1">
         <div class="container_">
         <img src="{{album.image[3]['#text']}}" class="img-fluid image" alt="...">
         <div class="overlay">
@@ -22,10 +22,10 @@
             <span><b>{{album.name}}</b></span>
             <br>
             <span>{{album.artist.name}}</span>
-          </div>
-          <div (click)="likeAlbum(album)">
-            <img src="./assets/heart-regular.svg" class="like" *ngIf="!album.liked||album.liked===null">
-            <img src="./assets/heart-solid.svg" class="like" *ngIf="album.liked">
+            <div (click)="likeAlbum(album)" class="image">
+              <img src="./assets/heart-regular.svg" class="like" *ngIf="!album.liked||album.liked===null">
+              <img src="./assets/heart-solid.svg" class="like" *ngIf="album.liked">
+            </div>
           </div>
         </div>
         </div>

@@ -6,12 +6,12 @@ nav {
   margin: 10px;
 }
 .navbar-brand:hover {
-  color: azure;
+  color: darkgray;
 }
 
 .text {
   color: white;
-  font-size: 14px;
+  font-size: 20px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -34,31 +34,24 @@ nav {
   opacity: 0;
   transition: .5s ease;
   background-color: black;
-  border-radius: 30px;
+  border-radius: 20px;
 }
 .image {
   width: 100%;
-  border-radius: 30px;
+  border-radius: 20px;
   height: auto;
+  text-align: center;
 }
 .container_ {
   position: relative;
-  display: block;
-  border-radius: 30px;
+  border-radius: 20px;
 }
 input {
-  position: absolute;
-  top: 31%;
-  left: 7%;
+  float: left;
 }
 .like {
-  width: 13%;
-  height: 13%;
-  position: absolute;
-  text-align: center;
-  top: 76%;
-  left: 41%;
-  margin: 0 auto;
+  width: 25px;
+  margin: 10px;
 }
 .navbar-like {
   position: absolute;
@@ -72,7 +65,7 @@ input {
 .navbar-like-counter {
   position: absolute;
   left: 96%;
-  top: 23%;
+  top: 25%;
   width: 23px;
   height: 23px;
   background-color: blueviolet;
@@ -81,18 +74,7 @@ input {
   color: white;
   margin: 0 auto;
 }
-.navbar-like-counter:hover {
-  position: absolute;
-  left: 96%;
-  top: 23%;
-  width: 25px;
-  height: 25px;
-  background-color: blueviolet;
-  border-radius: 100%;
-  text-align: center;
-  color: white;
-  margin: 0 auto;
-}
+
 .navbar-like:hover {
   position: absolute;
   left: 95%;
