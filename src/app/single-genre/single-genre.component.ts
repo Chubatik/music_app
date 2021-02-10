@@ -14,6 +14,7 @@ export class SingleGenreComponent implements OnInit {
   genre = '';
   topAlbums: any[] = [];
   inputValue = '';
+  searchedAlbums: any[] = [];
   ngOnInit(): void {
     this.path = this.location.path();
     this.genre = this.parsePath(this.path);
@@ -23,8 +24,22 @@ export class SingleGenreComponent implements OnInit {
     this.apiService.getGenreTopAlbums(genre).subscribe(
       data => {
         this.topAlbums = data.albums.album;
+        this.searchedAlbums = this.topAlbums;
       }
     );
+  }
+
+  out(): void {
+    this.searchedAlbums = [];
+    if (this.inputValue !== ''){
+      this.topAlbums.forEach((e: any) => {
+        if (e.name.toLowerCase().includes(this.inputValue)) {
+          this.searchedAlbums.push(e);
+        }
+      });
+    } else {
+      this.searchedAlbums = this.topAlbums;
+    }
   }
   parsePath(path: string): string{
     const last = path.lastIndexOf('/');
