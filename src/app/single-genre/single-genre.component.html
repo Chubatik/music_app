@@ -3,11 +3,14 @@
   <div class="nav-item">
         <input type="text" [(ngModel)]="inputValue" (keyup)="out()" size="50" placeholder="Search by album's name">
   </div>
-  <div class="navbar-like"></div>
-  <div class="navbar-like-counter">{{counter}}</div>
+  <div>
+  <div class="navbar-like" (click)="openLikedAlbums()"></div>
+  <div class="navbar-like-counter">{{storedAlbums.length}}</div>
+  </div>
 </nav>
-
-
+<div class="container heading" *ngIf="searchedAlbums.length===0">
+  <h2>There are no albums</h2>
+</div>
 <div class="container">
   <div class="row g-2">
     <div class="col-md-2" *ngFor="let album of searchedAlbums">

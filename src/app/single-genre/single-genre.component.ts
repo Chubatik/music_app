@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {ApiService} from '../api.service';
 
@@ -17,6 +17,7 @@ export class SingleGenreComponent implements OnInit {
   inputValue = '';
   searchedAlbums: any[] = [];
   storedAlbums: any[] = [];
+  isLikedAlbumsOpened = false;
   ngOnInit(): void {
     this.path = this.location.path();
     this.genre = this.parsePath(this.path);
@@ -31,11 +32,12 @@ export class SingleGenreComponent implements OnInit {
           e.liked = null;
         });
         this.searchedAlbums = this.topAlbums;
+        if (this.isLikedAlbumsOpened) {
+          this.searchedAlbums = this.storedAlbums;
+        }
         this.checkForLike(this.topAlbums, this.storedAlbums);
-        this.countLikedAlbums(this.storedAlbums);
       }
     );
-
   }
 
   checkForLike(topAlbums: any[], storedAlbums: any[]): void{
@@ -46,11 +48,6 @@ export class SingleGenreComponent implements OnInit {
         }
       }
     }
-  }
-  countLikedAlbums(storedAlbums: any[]): void{
-    storedAlbums.forEach((e: any) => {
-      this.counter++;
-    })
   }
   allStorage(): any {
     let values: any[] = [],
@@ -74,25 +71,31 @@ export class SingleGenreComponent implements OnInit {
   removeFromLocalStorage(album: any): void {
     localStorage.removeItem(`${album.name}`);
   }
-
+  removeFromStoredAlbums(album: any): void {
+    for (let i = 0; i < this.storedAlbums.length; i++) {
+      if (this.storedAlbums[i].name === album.name) {
+        this.storedAlbums.splice(i,1);
+      }
+    }
+  }
   likeAlbum(album: any): boolean {
     if (album.liked === null || album.liked === false) {
       this.counter++;
       album.liked = true;
       this.addToLocalStorage(album);
-      return album.liked;
+      this.storedAlbums = this.allStorage();
     } else {
       this.counter--;
       album.liked = false;
       this.removeFromLocalStorage(album);
-      return album.liked;
+      this.removeFromStoredAlbums(album);
     }
+    return album.liked;
   }
-
-  out(): void {
+  searchAlbums(albums: any[]): void {
     this.searchedAlbums = [];
     if (this.inputValue !== ''){
-      this.topAlbums.forEach((e: any) => {
+      albums.forEach((e: any) => {
         const lowerName = e.name.toLowerCase();
         const lowerInput = this.inputValue.toLowerCase();
         if (lowerName.includes(lowerInput)) {
@@ -100,14 +103,28 @@ export class SingleGenreComponent implements OnInit {
         }
       });
     } else {
+      this.searchedAlbums = albums;
+    }
+  }
+  out(): void {
+    if (this.isLikedAlbumsOpened) {
+      this.searchAlbums(this.storedAlbums);
+    } else {
+      this.searchAlbums(this.topAlbums);
+    }
+  }
+  openLikedAlbums(): void {
+    this.isLikedAlbumsOpened = !this.isLikedAlbumsOpened;
+    if (this.isLikedAlbumsOpened){
+      this.searchedAlbums = this.storedAlbums;
+    } else {
       this.searchedAlbums = this.topAlbums;
+      this.getTopAlbums(this.genre);
     }
   }
 
-
   parsePath(path: string): string{
     const last = path.lastIndexOf('/');
-    const genre = path.slice(last + 1);
-    return genre;
+    return path.slice(last + 1);
   }
 }
