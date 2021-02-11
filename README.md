@@ -7,3 +7,4 @@ npm install
 npm start
 ```
 - Open your browser and go to http://localhost:4200/ address
+- [Last.fmApi](https://www.last.fm/api) was used for getting data.
