@@ -62,19 +62,36 @@ input {
   background: url("src/assets/heart-solid.svg") no-repeat;
   margin: 0 auto;
 }
+.navbar-like-close {
+  position: absolute;
+  left: 95%;
+  top: 31%;
+  width: 27px;
+  height: 27px;
+  background: url("src/assets/times-solid.svg") no-repeat;
+  margin: 0 auto;
+}
 .navbar-like-counter {
   position: absolute;
   left: 96%;
   top: 25%;
   width: 23px;
   height: 23px;
-  background-color: blueviolet;
+  background-color: forestgreen;
   border-radius: 100%;
   text-align: center;
   color: white;
   margin: 0 auto;
 }
-
+.navbar-like-close:hover {
+  position: absolute;
+  left: 95%;
+  top: 31%;
+  width: 29px;
+  height: 29px;
+  background: url("src/assets/times-solid.svg") no-repeat;
+  margin: 0 auto;
+}
 .navbar-like:hover {
   position: absolute;
   left: 95%;

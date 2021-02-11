@@ -4,8 +4,9 @@
         <input type="text" [(ngModel)]="inputValue" (keyup)="out()" size="50" placeholder="Search by album's name">
   </div>
   <div>
-  <div class="navbar-like" (click)="openLikedAlbums()"></div>
-  <div class="navbar-like-counter" *ngIf="storedAlbums.length>0">{{storedAlbums.length}}</div>
+    <div class="navbar-like" (click)="openLikedAlbums()" *ngIf="!isLikedAlbumsOpened"></div>
+    <div class="navbar-like-close" (click)="openLikedAlbums()" *ngIf="isLikedAlbumsOpened"></div>
+    <div class="navbar-like-counter" *ngIf="storedAlbums.length>0&&!isLikedAlbumsOpened">{{storedAlbums.length}}</div>
   </div>
 </nav>
 <div class="container heading" *ngIf="searchedAlbums.length===0">
