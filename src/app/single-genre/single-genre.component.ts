@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Location} from '@angular/common';
 import {ApiService} from '../api.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-single-genre',
@@ -9,9 +9,8 @@ import {ApiService} from '../api.service';
 })
 export class SingleGenreComponent implements OnInit {
 
-  constructor(private location: Location, private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private router: ActivatedRoute) { }
   counter = 0;
-  path = '';
   genre = '';
   topAlbums: any[] = [];
   inputValue = '';
@@ -19,10 +18,11 @@ export class SingleGenreComponent implements OnInit {
   storedAlbums: any[] = [];
   isLikedAlbumsOpened = false;
   ngOnInit(): void {
-    this.path = this.location.path();
-    this.genre = this.parsePath(this.path);
-    this.getTopAlbums(this.genre);
     this.storedAlbums = this.allStorage();
+    this.router.params.subscribe(genre => {
+      this.genre = genre.genre_name;
+      this.getTopAlbums(this.genre);
+    });
   }
   getTopAlbums(genre: string): void{
     this.apiService.getGenreTopAlbums(genre).subscribe(
@@ -121,10 +121,5 @@ export class SingleGenreComponent implements OnInit {
       this.searchedAlbums = this.topAlbums;
       this.getTopAlbums(this.genre);
     }
-  }
-
-  parsePath(path: string): string{
-    const last = path.lastIndexOf('/');
-    return path.slice(last + 1);
   }
 }
